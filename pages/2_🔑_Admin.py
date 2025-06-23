@@ -137,13 +137,15 @@ with tab3:
         tahun_mulai, tahun_akhir = None, None
         try:
             df_original_case = st.session_state.admin_upload_data["df"]
-            df_original_case.columns = df_original_case.columns.str.lower()
+            cols_lower = [c.lower() for c in df_original_case.columns]
             if params['is_multiyear']:
-                if 'tahun' in df_original_case.columns:
-                    tahun_mulai = int(df_original_case['tahun'].min())
-                    tahun_akhir = int(df_original_case['tahun'].max())
+                if 'tahun' in cols_lower:
+                    idx_tahun = cols_lower.index('tahun')
+                    tahun_colname = df_original_case.columns[idx_tahun]
+                    tahun_mulai = int(df_original_case[tahun_colname].min())
+                    tahun_akhir = int(df_original_case[tahun_colname].max())
                 else:
-                    st.error("Checkbox rentang tahun dicentang, tetapi kolom 'Tahun'/'tahun' tidak ditemukan.")
+                    st.error("Checkbox rentang tahun dicentang, tetapi kolom 'Tahun' tidak ditemukan (dalam bentuk huruf besar/kecil).")
                     st.stop()
             else:
                 tahun_mulai = params['selected_year']
