@@ -5,5 +5,4 @@ scikit-learn
 plotly
 mysql-connector-python
 SQLAlchemy
-mysqlclient
 bcrypt
