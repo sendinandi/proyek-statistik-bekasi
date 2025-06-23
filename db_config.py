@@ -25,4 +25,26 @@ def verify_user(username, password):
 @st.cache_data(ttl=300)
 def get_all_datasets_metadata():
     conn = st.connection("mysql_db", type="sql")  # ✅ Panggil di sini juga
-    return conn.query("SELECT * FROM uploaded_dat_*
+    return conn.query("SELECT * FROM uploaded_datasets ORDER BY kategori, nama_dataset_tampilan", ttl=300)
+
+# --- Fungsi Insert Metadata ---
+def insert_dataset_metadata(nama_dataset_tampilan, kategori, tahun_mulai, tahun_akhir, nama_file_asli, path_file):
+    conn = st.connection("mysql_db", type="sql")  # ✅ Di sini juga
+    try:
+        with conn.session as s:
+            query = text("""
+                INSERT INTO uploaded_datasets (nama_dataset_tampilan, kategori, tahun_mulai, tahun_akhir, nama_file_asli, path_file)
+                VALUES (:nama_dataset_tampilan, :kategori, :tahun_mulai, :tahun_akhir, :nama_file_asli, :path_file)
+            """)
+            s.execute(query, {
+                "nama_dataset_tampilan": nama_dataset_tampilan,
+                "kategori": kategori,
+                "tahun_mulai": tahun_mulai,
+                "tahun_akhir": tahun_akhir,
+                "nama_file_asli": nama_file_asli,
+                "path_file": path_file
+            })
+            s.commit()
+            return "✅ Sukses: Metadata dataset berhasil disimpan ke database."
+    except Exception as ex:
+        return f"❌ Terjadi kesalahan saat menyimpan metadata: {ex}"
