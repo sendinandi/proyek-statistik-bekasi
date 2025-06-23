@@ -1,0 +1,110 @@
+Revisi Projek Akhir
+
+1. Login dan logout ditampilkan juga di halaman admin
+2. untuk pada bagian admin jadi ada kayak tab tabnya gitu jadi tab pertama upload dan nanti tab selanjutnya akan muncul data frame selanjutnya ada visualisasinya setelah itu deteksi anomali
+3. Kasih panduan untuk upload filenya
+4. Tambahin kriteria tahun buat bagian admin untuk diupload
+5. Mungkin buat isi database dirubah kali yaa karena harusnya ada beberapa kriteria jadi kayak admin input berdasarkan kriteria yang sudah ada jadi di dashboard akan memunculkan kriteria dari data yang ada dan memilih dataset jadi mungkin akan ada field untuk dataset juga nah dibawahnya baru bisa diprediksi
+
+jujur untuk idenya saya belum ada buat di database apa yang harus dibuat atau diubah jadi bisa bantu saya?
+
+12 juli jam 9 ada opening ceremony
+setiap kelas 2,5 jam
+jadwalnya sabtu dan minggu
+
+1. Analisis Statistik Deskriptif
+
+Sajikan mean, median, standar deviasi konsumsi listrik harian
+
+Jelaskan nilai minimum dan maksimum konsumsi yang tercatat
+
+Uraikan distribusi konsumsi berdasarkan waktu (jam, hari, minggu)
+
+
+2. Visualisasi Pola Konsumsi
+
+Tampilkan grafik time series konsumsi listrik selama periode penelitian
+
+Sajikan heatmap pola konsumsi berdasarkan jam dan hari
+
+Uraikan seasonal pattern dan trend jangka panjang
+
+Diskusikan anomali atau outlier yang terdeteksi dalam data
+
+
+3. Preprocessing dan Feature Engineering
+
+Hasil data cleaning
+
+Paparkan jumlah dan jenis missing values yang ditemukan
+
+Paparkan jumlah dan jenis missing values yang ditemukan
+
+Jelaskan metode imputation yang digunakan dan alasannya
+
+Uraikan outlier yang terdeteksi dan penanganannya
+
+Diskusikan impact preprocessing terhadap kualitas dataset
+
+
+4. Hasil Feature Engineering
+
+Sajikan fitur-fitur temporal yang berhasil diekstrak
+
+Uraikan correlation analysis antara features dengan target variable
+
+Paparkan feature importance dan seleksi fitur yang dilakukan
+
+
+5. Normalisasi Data
+
+Diskusikan metode normalisasi yang digunakan (MinMax/StandardScaler)
+
+Jelaskan distribusi data sebelum dan sesudah normalisasi
+
+Uraikan impact normalisasi terhadap performa model
+
+
+6. Hasil Training dan Optimasi Model LSTM
+
+Eksperimen Hyperparameter Tuning
+
+Sajikan tabel hasil grid search untuk berbagai kombinasi parameter
+
+Jelaskan pengaruh learning rate terhadap convergence model
+
+Uraikan optimal batch size dan epochs berdasarkan validation loss
+
+Diskusikan pemilihan architecture (jumlah layers, neurons) terbaik
+
+
+7. Training Process Analysis
+
+Jelaskan learning curve dan indikasi overfitting/underfitting
+
+Uraikan waktu training yang dibutuhkan untuk berbagai konfigurasi
+
+
+8. Evaluasi Akurasi Prediksi LSTM
+
+Metrik Evaluasi Kuantitatif
+
+Sajikan hasil MAE, RMSE, dan MAPE untuk data testing
+
+Jelaskan distribusi error prediksi dan analisis residual
+
+
+9. Visualisasi Hasil Prediksi
+
+Tampilkan plot perbandingan prediksi vs actual values
+
+Sajikan scatter plot untuk menunjukkan korelasi prediksi-aktual
+
+
+10. Dampak dan Manfaat Praktis
+
+Energy Efficient Impact
+
+Sajikan analisis potensi penghematan energi dari prediksi akurat
+
+Uraikan cost savings estimation untuk pengguna

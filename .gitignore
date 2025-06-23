@@ -1,0 +1,26 @@
+# Folder Uploads Pengguna
+csv_uploads/
+
+# Virtual Environment Python
+venv/
+/venv/
+.venv/
+
+# File-file cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# File Konfigurasi Sensitif Streamlit
+.streamlit/secrets.toml
+
+# ======================================================
+# --- TAMBAHAN BARU ---
+# Abaikan file temporary dari MS Office & sistem operasi
+# ======================================================
+~$*.xlsx
+~$*.docx
+~$*.pptx
+.DS_Store
+Thumbs.db
