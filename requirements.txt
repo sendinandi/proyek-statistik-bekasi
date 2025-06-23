@@ -3,6 +3,6 @@ pandas
 numpy
 scikit-learn
 plotly
-mysql-connector-python
+PyMySQL
 SQLAlchemy
 bcrypt
