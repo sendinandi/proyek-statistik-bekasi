@@ -2,14 +2,13 @@ import streamlit as st
 import pandas as pd
 import bcrypt
 from sqlalchemy import text
-from mysql.connector import Error
 
-# Jangan buat conn di sini
-# conn = st.connection("mysql_db", type="sql") ❌
+def get_connection():
+    return st.connection("mysql_db", type="sql")
 
 # --- Fungsi Autentikasi (Tetap Sama) ---
 def verify_user(username, password):
-    conn = st.connection("mysql_db", type="sql")  # ✅ Panggil hanya saat dipakai
+    conn = get_connection()
     try:
         query = f"SELECT password, nama_lengkap FROM users WHERE username = '{username}'"
         user_data = conn.query(query, ttl=0)
@@ -21,15 +20,13 @@ def verify_user(username, password):
     except Exception:
         return None
 
-# --- Fungsi Baru untuk Mengelola Metadata Dataset ---
 @st.cache_data(ttl=300)
 def get_all_datasets_metadata():
-    conn = st.connection("mysql_db", type="sql")  # ✅ Panggil di sini juga
+    conn = get_connection()
     return conn.query("SELECT * FROM uploaded_datasets ORDER BY kategori, nama_dataset_tampilan", ttl=300)
 
-# --- Fungsi Insert Metadata ---
 def insert_dataset_metadata(nama_dataset_tampilan, kategori, tahun_mulai, tahun_akhir, nama_file_asli, path_file):
-    conn = st.connection("mysql_db", type="sql")  # ✅ Di sini juga
+    conn = get_connection()
     try:
         with conn.session as s:
             query = text("""
@@ -45,6 +42,6 @@ def insert_dataset_metadata(nama_dataset_tampilan, kategori, tahun_mulai, tahun_
                 "path_file": path_file
             })
             s.commit()
-            return "✅ Sukses: Metadata dataset berhasil disimpan ke database."
+            return "✅ Metadata berhasil disimpan."
     except Exception as ex:
-        return f"❌ Terjadi kesalahan saat menyimpan metadata: {ex}"
+        return f"❌ Gagal menyimpan metadata: {ex}"
