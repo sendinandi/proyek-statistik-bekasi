@@ -193,7 +193,7 @@ with tab3:
                         nama_file_asli=st.session_state.admin_upload_data["original_filename"], path_file=file_path
                     )
                     
-                    if "Sukses" in result:
+                    if result and "sukses" in result.lower():
                         st.success(result)
                         st.balloons()
                         st.cache_data.clear()
