@@ -198,6 +198,7 @@ with tab3:
                         st.balloons()
                         st.cache_data.clear()
                         st.session_state.admin_upload_data = {"df": None, "params": {}, "original_filename": None, "is_processed": False}
+                        st.rerun()
                     else:
                         st.error(result)
         except Exception as e:
