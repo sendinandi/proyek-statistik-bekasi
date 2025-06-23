@@ -15,10 +15,7 @@ __pycache__/
 # File Konfigurasi Sensitif Streamlit
 .streamlit/secrets.toml
 
-# ======================================================
-# --- TAMBAHAN BARU ---
 # Abaikan file temporary dari MS Office & sistem operasi
-# ======================================================
 ~$*.xlsx
 ~$*.docx
 ~$*.pptx
