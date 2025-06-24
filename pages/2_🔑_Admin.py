@@ -51,9 +51,6 @@ if 'admin_upload_data' not in st.session_state:
         "is_processed": False
     }
 
-if 'admin_upload_status' not in st.session_state:
-    st.session_state.admin_upload_status = None  # Bisa: None, 'success', 'error'
-
 # Membuat Tabs
 tab1, tab2, tab3 = st.tabs([
     "**1. Upload & Metadata**", 
@@ -138,8 +135,6 @@ with tab2:
 # --- TAB 3: DETEKSI ANOMALI & SIMPAN ---
 with tab3:
     st.header("Langkah 3: Deteksi Anomali dan Finalisasi")
-    # Reset status upload jika pindah tab
-    st.session_state.admin_upload_status = None
     if st.session_state.admin_upload_data.get("is_processed"):
         df = st.session_state.admin_upload_data["df"]
         params = st.session_state.admin_upload_data["params"]
@@ -181,10 +176,7 @@ with tab3:
                 tahun_mulai = params['selected_year']
                 tahun_akhir = params['selected_year']
             
-                btn_label = f"Simpan Dataset '{params['nama_dataset_tampilan']}'"
-                btn_style = "primary" if st.session_state.admin_upload_status != "error" else "secondary"
-
-                if st.button(btn_label, type=btn_style):
+            if st.button(f"Simpan Dataset '{params['nama_dataset_tampilan']}'"):
                 with st.spinner("Menyimpan..."):
                     timestamp = int(time.time())
                     unique_filename = f"{tahun_mulai}_{tahun_akhir}_{params['kategori'].lower().replace(' ', '')}_{timestamp}.csv"
@@ -206,11 +198,10 @@ with tab3:
                         st.balloons()
                         st.cache_data.clear()
                         st.session_state.admin_upload_data = {"df": None, "params": {}, "original_filename": None, "is_processed": False}
-                        st.session_state.admin_upload_status = "success"
                         st.rerun()
                     else:
-                        st.session_state.admin_upload_status = "error"
                         st.error(result)
+
         except Exception as e:
             st.error(f"Terjadi kesalahan pada tahap finalisasi: {e}")
     else:
